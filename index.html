@@ -6,13 +6,38 @@
   <title>Ricardo Vásquez Silva | Portafolio</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       background-color: #121212;
       color: #f5f5f5;
       text-align: center;
-      padding: 2rem;
+      padding-top: 80px;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1f1f1f;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00c6ff;
     }
     header img.profile {
       width: 160px;
@@ -53,6 +78,7 @@
     }
     main section {
       margin-top: 3rem;
+      padding: 1rem;
     }
     main h3 {
       font-size: 1.5rem;
@@ -95,6 +121,13 @@
   </style>
 </head>
 <body>
+  <nav>
+    <a href="#ensayos">Ensayos</a>
+    <a href="#linkedin">LinkedIn</a>
+    <a href="#bitacora">Bitácora</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+
   <header>
     <img src="assets/profile.jpg" alt="Foto de Ricardo Vásquez Silva" class="profile">
     <h1>Ricardo Vásquez Silva</h1>
@@ -110,7 +143,7 @@
   </header>
 
   <main>
-    <section>
+    <section id="ensayos">
       <h3>📚 Ensayos de Pensamiento Crítico y Actualidad</h3>
       <ul>
         <li><a href="https://heyzine.com/flip-book/685e5f98a0.html" target="_blank">Transformación Digital en PYMEs Latinoamericanas</a></li>
@@ -118,7 +151,7 @@
       </ul>
     </section>
 
-    <section>
+    <section id="linkedin">
       <h3>✍️ Publicaciones en LinkedIn</h3>
       <ul>
         <li><a href="https://www.linkedin.com/newsletters/ricardo-vasquez-silva-7032695252272455680/" target="_blank">Accede mi newsletter completo en LinkedIn</a></li>
@@ -129,13 +162,13 @@
       </ul>
     </section>
 
-    <section>
+    <section id="bitacora">
       <h3>🧠 Bitácora de Ideas y Contingencia</h3>
       <p><em>Espacio dedicado a reflexiones personales sobre la realidad social, la tecnología y la evolución del pensamiento estratégico.</em></p>
       <p><strong>Próximamente...</strong></p>
     </section>
 
-    <section class="contact-section">
+    <section id="contacto" class="contact-section">
       <h3>📬 Contacto</h3>
       <div class="contact-icons">
         <a href="mailto:ricardo.vasquezsilva@icloud.com">📧 Correo</a>
