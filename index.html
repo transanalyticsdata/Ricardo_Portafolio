@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ricardo Vásquez Silva | Portafolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="css/style.css">
   <style>
     html {
@@ -84,18 +85,41 @@
       font-size: 1.5rem;
       color: #00c6ff;
     }
-    main ul {
-      list-style: none;
-      padding: 0;
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
-    main ul li {
-      margin: 0.5rem 0;
+    .card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 300px;
+      transition: transform 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-    main ul li a {
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card-title {
+      color: #00c6ff;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-desc {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 1rem;
+    }
+    .card a {
       color: #80bfff;
       text-decoration: none;
+      font-weight: 500;
     }
-    main ul li a:hover {
+    .card a:hover {
       text-decoration: underline;
     }
     footer {
@@ -128,7 +152,7 @@
     <a href="#contacto">Contacto</a>
   </nav>
 
-  <header>
+  <header class="animate__animated animate__fadeInDown">
     <img src="assets/profile.jpg" alt="Foto de Ricardo Vásquez Silva" class="profile">
     <h1>Ricardo Vásquez Silva</h1>
     <h2>Ingeniero Civil Industrial | MBA & Master en IT</h2>
@@ -145,10 +169,18 @@
   <main>
     <section id="ensayos">
       <h3>📚 Ensayos de Pensamiento Crítico y Actualidad</h3>
-      <ul>
-        <li><a href="https://heyzine.com/flip-book/685e5f98a0.html" target="_blank">Transformación Digital en PYMEs Latinoamericanas</a></li>
-        <li><a href="https://heyzine.com/flip-book/ab1f2946da.html" target="_blank">Tiempo, trabajo y tecnología: una reflexión generacional</a></li>
-      </ul>
+      <div class="card-container">
+        <div class="card animate__animated animate__fadeInUp">
+          <div class="card-title">Transformación Digital en PYMEs Latinoamericanas</div>
+          <div class="card-desc">Una mirada crítica desde Chile y Australia sobre cómo la digitalización e IA impactan los modelos tradicionales.</div>
+          <a href="https://heyzine.com/flip-book/685e5f98a0.html" target="_blank">Leer ensayo completo</a>
+        </div>
+        <div class="card animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="card-title">Tiempo, trabajo y tecnología</div>
+          <div class="card-desc">Reflexión generacional sobre cómo el tiempo y la tecnología redefinen la productividad y el compromiso laboral.</div>
+          <a href="https://heyzine.com/flip-book/ab1f2946da.html" target="_blank">Leer ensayo completo</a>
+        </div>
+      </div>
     </section>
 
     <section id="linkedin">
@@ -184,3 +216,4 @@
   </footer>
 </body>
 </html>
+
