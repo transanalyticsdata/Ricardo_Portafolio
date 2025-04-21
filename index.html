@@ -282,22 +282,23 @@
   <footer>
     <p>© 2025 Ricardo Vásquez Silva. Todos los derechos reservados.</p>
   </footer>
- <!-- Chatbot Flotante - HumanIA -->
+ 
+  <!-- Chatbot Flotante - HumanIA -->
 <style>
   #chat-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 80px;
-    height: 80px;
+    width: 110px;
+    height: 110px;
     background-image: url("assets/humania-avatar.png");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 50%;
     cursor: pointer;
     z-index: 9999;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
     transition: transform 0.3s ease;
   }
   #chat-icon:hover {
@@ -306,10 +307,10 @@
 
   #chat-box {
     position: fixed;
-    bottom: 90px;
+    bottom: 140px;
     right: 20px;
-    width: 320px;
-    max-height: 480px;
+    width: 340px;
+    max-height: 500px;
     background-color: #1e1e1e;
     color: white;
     display: none;
@@ -359,12 +360,12 @@
     #chat-box {
       width: 90%;
       right: 5%;
-      bottom: 80px;
+      bottom: 130px;
     }
   }
 </style>
 
-<div id="chat-icon" onclick="toggleChat()"></div>
+<div id="chat-icon" onclick="toggleChat()" title="¿Tienes dudas? Pregúntale a HumanIA"></div>
 <div id="chat-box">
   <div id="chat-header">🤖 HumanIA Asistente</div>
   <div id="chat-log"></div>
@@ -423,7 +424,6 @@
     }
   }
 </script>
-
  
 </body>
 </html>
