@@ -282,16 +282,18 @@
   <footer>
     <p>© 2025 Ricardo Vásquez Silva. Todos los derechos reservados.</p>
   </footer>
-  <!-- Chatbot Flotante - HumanIA -->
+ <!-- Chatbot Flotante - HumanIA -->
 <style>
   #chat-icon {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background-image: url("assets/humania-avatar.png");
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 50%;
     cursor: pointer;
     z-index: 9999;
@@ -316,7 +318,14 @@
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0,0,0,0.6);
     z-index: 9998;
+    animation: fadeIn 0.3s ease-in-out;
   }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
   #chat-header {
     background-color: #0072ff;
     padding: 10px;
@@ -366,11 +375,23 @@
 </div>
 
 <script>
-  const apiUrl = "https://4f4eaac1-0d08-4726-bee4-9b6f2a0a611b-00-2jv9x8z0n75ok.picard.replit.dev/chat"; // URL real desde Replit
+  const apiUrl = "https://4f4eaac1-0d08-4726-bee4-9b6f2a0a611b-00-2jv9x8z0n75ok.picard.replit.dev/chat";
+
+  const chatIcon = document.getElementById("chat-icon");
+  const chatBox = document.getElementById("chat-box");
+  let chatTimeout;
 
   function toggleChat() {
-    const chatBox = document.getElementById("chat-box");
-    chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
+    const isVisible = chatBox.style.display === "flex";
+    chatBox.style.display = isVisible ? "none" : "flex";
+    if (!isVisible) startAutoHideTimer();
+  }
+
+  function startAutoHideTimer() {
+    clearTimeout(chatTimeout);
+    chatTimeout = setTimeout(() => {
+      chatBox.style.display = "none";
+    }, 60000); // se oculta automáticamente después de 60 segundos de inactividad
   }
 
   function appendToChat(sender, text) {
@@ -379,6 +400,7 @@
     entry.innerHTML = `<strong>${sender}:</strong> ${text}`;
     log.appendChild(entry);
     log.scrollTop = log.scrollHeight;
+    startAutoHideTimer();
   }
 
   async function sendMessage() {
@@ -401,6 +423,7 @@
     }
   }
 </script>
+
  
 </body>
 </html>
