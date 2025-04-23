@@ -154,7 +154,7 @@
     .contact-icons a:hover {
       background-color: #005ecc;
     }
-  <style>
+ <style>
   nav {
     display: flex;
     flex-wrap: wrap;
@@ -181,6 +181,37 @@
       flex: 1 1 calc(50% - 20px);
       box-sizing: border-box;
     }
+  }
+  .card {
+    background-color: #1e1e1e;
+    color: white;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    text-align: left;
+  }
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  .card a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  .card a:hover {
+    background-color: #0056b3;
   }
 </style>
 </head>
@@ -310,12 +341,15 @@
     </div>
    </div>
 </section>
-    <section id="musica">
-        <h3>Ricardo y su Combo-T: Proyecto musical impulsado por inteligencia artificial y la voz auténtica de Ricardo Vásquez Silva. Un banda que parodia tematicas actuales y relevantes desde el punto de vista de la tecnologia y puestas a disposicion de todas las personas en formato estilo cumbia tecnologica.</h3>
-        <a class="pagina-ricardoysucombot" href="https://ricardoysucombot.github.io/Nuestro_Sitio" target="_blank">
-          📬 Accede a nuestra pagina oficial
-        </a>
-       </section>  
+    <section id="musica" style="padding: 40px 20px;">
+  <div class="card">
+    <h3>🎙 Ricardo y su Combo-T</h3>
+    <p>
+      Proyecto musical desarrollado con inteligencia artificial, donde la voz y pasión de Ricardo Vásquez Silva se unen con tecnología para crear interpretaciones auténticas, alegres y sorprendentes. Aquí confluyen la creatividad artística, la ironia musical, letras entretenidas con estilo bailable y la innovación tecnológica.
+    </p>
+    <a href="https://ricardoysucombot.vercel.app" target="_blank">accede a nuestra pagina oficial</a>
+  </div>
+</section>
     <section id="linkedin">
         <h3>✍️ Publicaciones en LinkedIn</h3>
         <a class="newsletter-link" href="https://www.linkedin.com/newsletters/ricardo-vasquez-silva-7032695252272455680/" target="_blank">
