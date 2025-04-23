@@ -154,13 +154,39 @@
     .contact-icons a:hover {
       background-color: #005ecc;
     }
-  </style>
+  <style>
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: center;
+    }
+    nav a {
+      width: 100%;
+      padding: 10px 0;
+    }
+  }
+</style>
 </head>
 <body>
   <nav>
     <a href="#ensayos">Ensayos</a>
     <a href="#bitacora">Bitácora</a>
     <a href="#podcast">Podcast HumanIA</a>
+    <a href="#musica">🎙 Ricardo y su Combo-T</a>
     <a href="#linkedin">LinkedIn</a>
     <a href="#contacto">Contacto</a>
   </nav>
@@ -281,7 +307,13 @@
     </div>
    </div>
 </section>
-      <section id="linkedin">
+    <section id="musica">
+        <h3>Musica y diversion creada con IA y en la voz Ricardo</h3>
+        <a class="pagina-ricardoysucombot" href="https://ricardoysucombot.github.io/Nuestro_Sitio" target="_blank">
+          📬 Accede a nuestra pagina oficial
+        </a>
+       </section>  
+    <section id="linkedin">
         <h3>✍️ Publicaciones en LinkedIn</h3>
         <a class="newsletter-link" href="https://www.linkedin.com/newsletters/ricardo-vasquez-silva-7032695252272455680/" target="_blank">
           📬 Accede a mi newsletter de LinkedIn
