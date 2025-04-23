@@ -161,6 +161,7 @@
     justify-content: center;
     gap: 20px;
     padding: 10px;
+    margin: 0 10px;
   }
   nav a {
     color: white;
@@ -168,15 +169,17 @@
     font-weight: bold;
     padding: 10px;
     font-size: 1rem;
+    flex: 1 0 auto;
+    text-align: center;
+    white-space: nowrap;
   }
   @media (max-width: 768px) {
     nav {
-      flex-direction: column;
-      align-items: center;
+      justify-content: flex-start;
     }
     nav a {
-      width: 100%;
-      padding: 10px 0;
+      flex: 1 1 calc(50% - 20px);
+      box-sizing: border-box;
     }
   }
 </style>
@@ -308,7 +311,7 @@
    </div>
 </section>
     <section id="musica">
-        <h3>Ricardo y su Combo-T: Musica y diversion creada con IA y Ricardo en la voz</h3>
+        <h3>Ricardo y su Combo-T: Proyecto musical impulsado por inteligencia artificial y la voz auténtica de Ricardo Vásquez Silva. Un banda que parodia tematicas actuales y relevantes desde el punto de vista de la tecnologia y puestas a disposicion de todas las personas en formato estilo cumbia tecnologica.</h3>
         <a class="pagina-ricardoysucombot" href="https://ricardoysucombot.github.io/Nuestro_Sitio" target="_blank">
           📬 Accede a nuestra pagina oficial
         </a>
