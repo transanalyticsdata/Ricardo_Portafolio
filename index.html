@@ -19,18 +19,27 @@
       padding-top: 80px;
     }
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #1f1f1f;
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1f1f1f;
+  display: flex;
+  flex-wrap: wrap;           /* 🟢 Permite que los links bajen de línea */
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+nav a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 5px 10px;           /* 🟢 Añade separación para permitir el wrap */
+  transition: color 0.3s;
+  white-space: nowrap;       /* 🟢 Opcional: evita cortes de palabras */
+}
+
     nav a {
       color: #f5f5f5;
       text-decoration: none;
