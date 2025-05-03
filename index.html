@@ -238,7 +238,7 @@ nav a {
   <h3>🧠 Bitácora de Ideas y Contingencia</h3>
   <p><em>Espacio dedicado a reflexiones personales sobre la realidad social, la tecnología y la evolución del pensamiento estratégico.</em></p>
 
-  <div class="card-container">
+  <div class="card-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
     <!-- PRIMERAS 4 VISIBLE -->
     <div class="card animate__animated animate__fadeInUp">
       <div class="card-title">¿Cómo nos afecta a todos la decisión de Estados Unidos de subir aranceles a nivel global?</div>
@@ -262,7 +262,7 @@ nav a {
     </div>
 
     <!-- RESTO OCULTO POR DEFECTO -->
-    <div id="more-posts" style="display: none;">
+    <div id="more-posts" style="display: none; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
       <div class="card animate__animated animate__fadeInUp animate__delay-4s">
         <div class="card-title">No se trata del software. Se trata de la visión.</div>
         <div class="card-desc">Publicada el 12 de Abril de 2025</div>
@@ -304,7 +304,7 @@ nav a {
   <!-- BOTÓN VER MÁS -->
   <div style="text-align: center; margin-top: 20px;">
     <button id="show-more-btn" style="
-      background-color: #2a2a72;
+      background-color: #007bff;
       color: white;
       border: none;
       padding: 10px 20px;
@@ -312,16 +312,20 @@ nav a {
       font-size: 1em;
       cursor: pointer;
       transition: background 0.3s;
-    " onmouseover="this.style.backgroundColor='#1e1e50'" onmouseout="this.style.backgroundColor='#2a2a72'" onclick="showMorePosts()">Ver todas las publicaciones</button>
+    " onmouseover="this.style.backgroundColor='#0056b3'" onmouseout="this.style.backgroundColor='#007bff'" onclick="showMorePosts()">Ver todas las publicaciones</button>
   </div>
 </section>
 
 <script>
 function showMorePosts() {
-  document.getElementById('more-posts').style.display = 'grid';
+  const morePosts = document.getElementById('more-posts');
+  morePosts.style.display = 'grid';
+  morePosts.style.gridTemplateColumns = 'repeat(auto-fit, minmax(280px, 1fr))';
+  morePosts.style.gap = '20px';
   document.getElementById('show-more-btn').style.display = 'none';
 }
 </script>
+
 
    <section id="podcast">
   <h3>🎙️ Pensamiento en Voz Alta </h3>
