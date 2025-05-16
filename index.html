@@ -424,7 +424,95 @@ function showMorePosts() {
     <p>© 2025 Ricardo Vásquez Silva. Todos los derechos reservados.</p>
   </footer>
  
- 
+
+<!-- CHATBOT INTEGRADO -->
+<div id="chatbot-container">
+  <div id="chatbot-header">🤖 Chat con RicardoBot</div>
+  <div id="chatbot-messages"></div>
+  <div id="chatbot-input">
+    <input type="text" id="chat-input" placeholder="Haz una pregunta..." />
+    <button onclick="enviarPregunta()">Enviar</button>
+  </div>
+</div>
+
+<style>
+  #chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: 450px;
+    background: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    z-index: 10000;
+  }
+  #chatbot-header {
+    background: #0072ff;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+  }
+  #chatbot-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+  }
+  #chatbot-input {
+    display: flex;
+    border-top: 1px solid #333;
+  }
+  #chatbot-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    background: #2a2a2a;
+    color: white;
+  }
+  #chatbot-input button {
+    background: #00c6ff;
+    border: none;
+    padding: 10px 15px;
+    color: white;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const apiUrl = 'https://[TU-BACKEND-REPLIT].replit.dev/ask'; // <--- REEMPLAZA ESTO CON TU URL
+
+  function enviarPregunta() {
+    const input = document.getElementById('chat-input');
+    const msgContainer = document.getElementById('chatbot-messages');
+    const pregunta = input.value.trim();
+    if (!pregunta) return;
+
+    msgContainer.innerHTML += `<div><strong>Tú:</strong> ${pregunta}</div>`;
+    input.value = 'Cargando...';
+
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: pregunta })
+    })
+    .then(res => res.json())
+    .then(data => {
+      msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
+      input.value = '';
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+    })
+    .catch(err => {
+      msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
+      input.value = '';
+    });
+  }
+</script>
+
 </body>
 </html>
 
