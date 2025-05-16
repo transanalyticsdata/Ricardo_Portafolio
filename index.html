@@ -484,34 +484,50 @@ function showMorePosts() {
 </style>
 
 <script>
-  const apiUrl = 'https://chatbot-backend-contacto107.replit.app/ask'; // <--- REEMPLAZA ESTO CON TU URL
+const apiUrl = 'https://chatbot-backend-contacto107.replit.app/ask';
+const msgContainer = document.getElementById('chat-box');
+const input = document.getElementById('chat-input');
 
-  function enviarPregunta() {
-    const input = document.getElementById('chat-input');
-    const msgContainer = document.getElementById('chatbot-messages');
-    const pregunta = input.value.trim();
-    if (!pregunta) return;
+// 👋 Enviar saludo inicial automáticamente
+fetch(apiUrl, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ question: "__init__" })
+})
+.then(res => res.json())
+.then(data => {
+  msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
+  msgContainer.scrollTop = msgContainer.scrollHeight;
+})
+.catch(err => {
+  msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
+});
 
-    msgContainer.innerHTML += `<div><strong>Tú:</strong> ${pregunta}</div>`;
-    input.value = 'Cargando...';
+// 🎤 El resto del manejo cuando el usuario escribe
+function enviarPregunta() {
+  const pregunta = input.value.trim();
+  if (!pregunta) return;
 
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: pregunta })
-    })
-    .then(res => res.json())
-    .then(data => {
-      msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
-      input.value = '';
-      msgContainer.scrollTop = msgContainer.scrollHeight;
-    })
-    .catch(err => {
-      msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
-      input.value = '';
-    });
-  }
+  msgContainer.innerHTML += `<div><strong>Tú:</strong> ${pregunta}</div>`;
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question: pregunta })
+  })
+  .then(res => res.json())
+  .then(data => {
+    msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
+    input.value = '';
+    msgContainer.scrollTop = msgContainer.scrollHeight;
+  })
+  .catch(err => {
+    msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
+    input.value = '';
+  });
+}
 </script>
+
 
 </body>
 </html>
