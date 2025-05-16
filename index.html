@@ -425,108 +425,159 @@ function showMorePosts() {
   </footer>
  
 
-<!-- CHATBOT INTEGRADO -->
-<div id="chatbot-container">
-  <div id="chatbot-header">🤖 Chat con RicardoBot</div>
-  <div id="chatbot-messages"></div>
-  <div id="chatbot-input">
-    <input type="text" id="chat-input" placeholder="Haz una pregunta..." />
-    <button onclick="enviarPregunta()">Enviar</button>
+<!-- Chatbot Flotante -->
+<div id="chatbot-toggle" onclick="toggleChatbot()">💬 Chat</div>
+
+<div id="chatbot-widget">
+  <div id="chatbot-header">
+    🤖 RicardoBot
+    <span id="chatbot-close" onclick="toggleChatbot()">✖</span>
   </div>
+  <div id="chatbot-messages"></div>
+  <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta...">
+  <button onclick="enviarPregunta()">Enviar</button>
 </div>
 
 <style>
-  #chatbot-container {
+  #chatbot-toggle {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 320px;
-    max-height: 450px;
-    background: #1e1e1e;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    z-index: 10000;
-  }
-  #chatbot-header {
-    background: #0072ff;
-    padding: 10px;
+    background-color: #007bff;
     color: white;
+    padding: 12px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 9998;
     font-weight: bold;
-    text-align: left;
   }
+
+  #chatbot-widget {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 320px;
+    max-height: 500px;
+    background: #1f1f1f;
+    border: 1px solid #555;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+
+  #chatbot-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px 12px 0 0;
+  }
+
   #chatbot-messages {
-    flex-grow: 1;
     padding: 10px;
     overflow-y: auto;
-    font-size: 0.9rem;
+    height: 250px;
+    font-size: 14px;
   }
+
   #chatbot-input {
-    display: flex;
-    border-top: 1px solid #333;
-  }
-  #chatbot-input input {
-    flex-grow: 1;
+    width: calc(100% - 100px);
     padding: 10px;
     border: none;
-    background: #2a2a2a;
+    border-top: 1px solid #444;
+    background: #292929;
     color: white;
   }
-  #chatbot-input button {
-    background: #00c6ff;
+
+  #chatbot-widget button {
+    width: 80px;
+    padding: 10px;
     border: none;
-    padding: 10px 15px;
+    background: #00c6ff;
     color: white;
+    font-weight: bold;
     cursor: pointer;
+    border-top: 1px solid #444;
+  }
+
+  #chatbot-close {
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  @media (max-width: 600px) {
+    #chatbot-toggle {
+      right: 10px;
+      bottom: 20px;
+      font-size: 16px;
+    }
+
+    #chatbot-widget {
+      right: 10px;
+      bottom: 80px;
+      width: 95vw;
+    }
+
+    #chatbot-messages {
+      height: 220px;
+    }
   }
 </style>
 
 <script>
-const apiUrl = 'https://chatbot-backend-contacto107.replit.app/ask';
-const msgContainer = document.getElementById('chatbot-messages');
-const input = document.getElementById('chat-input');
+  const apiUrl = "https://chatbot-backend-contacto107.replit.app/ask";
+  const msgContainer = document.getElementById("chatbot-messages");
+  const input = document.getElementById("chatbot-input");
 
-// 👋 Enviar saludo inicial automáticamente
-fetch(apiUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ question: "__init__" })
-})
-.then(res => res.json())
-.then(data => {
-  msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
-  msgContainer.scrollTop = msgContainer.scrollHeight;
-})
-.catch(err => {
-  msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
-});
+  function toggleChatbot() {
+    const widget = document.getElementById("chatbot-widget");
+    const toggle = document.getElementById("chatbot-toggle");
+    if (widget.style.display === "none" || widget.style.display === "") {
+      widget.style.display = "flex";
+      toggle.style.display = "none";
+      // Mensaje de bienvenida al abrir el chat
+      msgContainer.innerHTML = `<div><strong>Bot:</strong> 👋 ¡Hola! Soy RicardoBot, tu asistente virtual. Pregúntame sobre cualquier ensayo, podcast o publicación de Ricardo Vásquez Silva.</div>`;
+    } else {
+      widget.style.display = "none";
+      toggle.style.display = "block";
+    }
+  }
 
-// 🎤 El resto del manejo cuando el usuario escribe
-function enviarPregunta() {
-  const pregunta = input.value.trim();
-  if (!pregunta) return;
+  function enviarPregunta() {
+    const pregunta = input.value.trim();
+    if (!pregunta) return;
 
-  msgContainer.innerHTML += `<div><strong>Tú:</strong> ${pregunta}</div>`;
+    msgContainer.innerHTML += `<div><strong>Tú:</strong> ${pregunta}</div>`;
 
-  fetch(apiUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question: pregunta })
-  })
-  .then(res => res.json())
-  .then(data => {
-    msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
-    input.value = '';
-    msgContainer.scrollTop = msgContainer.scrollHeight;
-  })
-  .catch(err => {
-    msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
-    input.value = '';
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: pregunta })
+    })
+    .then(res => res.json())
+    .then(data => {
+      msgContainer.innerHTML += `<div><strong>Bot:</strong> ${data.answer}</div>`;
+      input.value = '';
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+    })
+    .catch(err => {
+      msgContainer.innerHTML += `<div><strong>Error:</strong> No se pudo conectar al servidor.</div>`;
+      input.value = '';
+    });
+  }
+
+  input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") enviarPregunta();
   });
-}
 </script>
+
 
 
 </body>
